@@ -19,7 +19,7 @@ scopus_df_2010_2015 <- scopus2df(largechar_2010_2015)
 #... aceder a él, y no puedo hacer la transformación. Pongo el código abajo para que-
 #... lo hagas vos:
 
-# Convierto el data.frame en tipo tible
+# Convierto el data.frame en tipo tibble
 library(tidyverse)
 tibble_scopus_df_2010_2015 <- as_tibble(scopus_df_2010_2015) #cambió a tibble..
 
