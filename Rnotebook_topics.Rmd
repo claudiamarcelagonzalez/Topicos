@@ -3,6 +3,13 @@ title: "Topicos Rnotebook"
 output: html_notebook
 ---
 
+##Repositorio Topicos
+
+Este es un archivo Rnotebook, es como un sript pero más interactivo y permite generar directamente informes.
+
+Para ver como va quedando podés cliquear arriba en Preview, y lo vas a ver en HTML.
+
+
 Activación de paquetes:
 
 ```{r}
