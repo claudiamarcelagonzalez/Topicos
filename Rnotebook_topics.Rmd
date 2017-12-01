@@ -9,7 +9,7 @@ Este es un archivo Rnotebook, es como un script pero más interactivo y permite 
 
 Para ver como va quedando podés cliquear arriba en Preview, y lo vas a ver en HTML (también saca en otros formatos: word, pdf, diapositivas, etc.)
 
-El código a ejecutar se pone en grisado y se ejecuta con la flechita de la derecha.
+El código a ejecutar se pone en grisado y se ejecuta con la flechita de la derecha. Para insertar chunks (lo grisado) vas a icono "Insert", y luego "R".
 
 
 Activación de paquetes:
@@ -29,5 +29,11 @@ dataset1 <- read_csv(("C:/Users/User/Desktop/Seba/Datasets enraizados. No tocar 
 ```
 
 Siempre en cada sesión hay que cargar el csv (archivo prístino), ejecutar la sentencias y se reproducira el trabajo. Eso es bueno porque permite chequear que esté todo bien y sin errores.
+
+Siempre hay que ejecutar desde el principio porque si yo trabajé sobre la tibble y vos no ejecutas el código actualizado, vas a trabajar sobre un dataset ditinto, con resultados distintos.
+
+Si querés anda pasando código del script a este Rnotebook.
+
+
 
 
