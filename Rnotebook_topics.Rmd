@@ -1,0 +1,21 @@
+---
+title: "Topicos Rnotebook"
+output: html_notebook
+---
+
+Activación de paquetes:
+
+```{r}
+library(tidyverse)
+```
+
+Este código levanta el csv de mi rígido. Vos hace lo mismo cambiando el path al directorio donde lo tenés:
+
+```{r path para Sebastián}
+dataset1 <- read_csv(("C:/Users/User/Desktop/Seba/Datasets enraizados. No tocar ni mover/dataset.csv"), guess_max = 10000)
+```
+
+```{r path para Claudia}
+dataset1 <- read_csv(("C:/Users/User/Desktop/Seba/Datasets enraizados. No tocar ni mover/dataset.csv"), guess_max = 10000)
+```
+
