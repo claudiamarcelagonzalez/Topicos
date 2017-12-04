@@ -72,13 +72,25 @@ colnames(AB_TM_dataset1_stop_sinStem_sinPunto, do.NULL = TRUE, prefix = "col")
 # *******************
 # El número máximo de clusters que acepta la función es 8: k.max, pongo el máximo. El minDegree es la frecuencia mínima: pruebo opciones.
 SinStemmAB100_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=100, k.max = 8, labelsize=4)
+SinStemmAB100_8$km.res
 SinStemmAB75_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=75, k.max = 8, labelsize=4)
+SinStemmAB75_8$km.res
 SinStemmAB50_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=50, k.max = 8, labelsize=4)
+SinStemmAB50_8$km.res
 SinStemmAB30_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=30, k.max = 8, labelsize=4)
+SinStemmAB30_8$km.res
 SinStemmAB25_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=25, k.max = 8, labelsize=4)
+SinStemmAB25_8$km.res
 SinStemmAB20_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=20, k.max = 8, labelsize=4)
+SinStemmAB20_8$km.res
 SinStemmAB15_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=15, k.max = 8, labelsize=4)
+SinStemmAB15_8$km.res
 SinStemmAB10_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=10, k.max = 8, labelsize=4)
+SinStemmAB10_8$km.res
 SinStemmAB8_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=8, k.max = 8, labelsize=4)
+SinStemmAB8_8$km.res
 SinStemmAB5_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=5, k.max = 8, labelsize=4)
+SinStemmAB5_8$km.res
 SinStemmAB2_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=2, k.max = 8, labelsize=4)
+SinStemmAB2_8$km.res
+
