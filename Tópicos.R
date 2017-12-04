@@ -28,12 +28,16 @@ library (bibliometrix)
 #Muestra de la data.frame "scopus_df_2010_2015":
 # muestra_scopus_df_2010_2015 <- scopus_df_2010_2015[sample(1:nrow(poblacion), 3000 , replace=FALSE),]
 
-# Importo los datos
-# *****************
-# Levanto el csv que me envia Sebastian 01/12/2017. Se supone que es mi data.frame en formato tibble. Lo hacemos
-# para asegurarnos que los dos trabajamos sobre los mismos datos
-dataset1 <- read.csv("~/Documents/INV/DATOS/Repositorios-RG/2017_12_30/datasetSebastian.csv")
+# Importación de los datos
+# ***********************
+
+#Importación de Claudia:
+library(tidyverse)  #esto carga el paquete readr entre otros
 dataset1 <- read_csv(("~/Documents/INV/DATOS/Repositorios-RG/2017_12_30/datasetSebastian.csv"), guess_max = 10000)
+
+#Importación de Sebastian:
+library(tidyverse)
+dataset1 <- read_csv(("C:/Users/User/Desktop/Seba/Datasets enraizados. No tocar ni mover/dataset.csv"), guess_max = 10000)
 
 # Genero una stop-word en inglés 
 # ****************************** 
