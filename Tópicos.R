@@ -33,7 +33,7 @@ library (bibliometrix)
 # Levanto el csv que me envia Sebastian 01/12/2017. Se supone que es mi data.frame en formato tibble. Lo hacemos
 # para asegurarnos que los dos trabajamos sobre los mismos datos
 dataset1 <- read.csv("~/Documents/INV/DATOS/Repositorios-RG/2017_12_30/datasetSebastian.csv")
-#dataset1 <- read.csv(("~/Documents/INV/DATOS/Repositorios-RG/2017_12_30/datasetSebastian.csv"), guess_max = 10000)
+dataset1 <- read_csv(("~/Documents/INV/DATOS/Repositorios-RG/2017_12_30/datasetSebastian.csv"), guess_max = 10000)
 
 # Genero una stop-word en inglés 
 # ****************************** 
