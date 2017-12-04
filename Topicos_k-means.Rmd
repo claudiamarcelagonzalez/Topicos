@@ -1,0 +1,139 @@
+---
+title: "Aplicación de la técnica de agrupamiento k-means al corpus Scopus_CS_Argentina_xArgentinos_2010_2015"
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document:
+    df_print: paged
+---
+
+La idea es aplicar clustering a los textos de los resúmenes de un corpus de 3389 registros recuperados a partir de buscar en Scopus en el gran área de Ciencias Sociales & Humanidades, trabajos de autoria argentina (afiliación de alguno de los autores), que contengan la palabra ARGENTINA o derivados en los campos título, keywords o resumen, en el periodo 2010-2015.  
+
+Para importar los registros de Scopus a R, utilizamos el paquete bibliometrix (https://cran.r-project.org/web/packages/bibliometrix/bibliometrix.pdf) que permite generar un data.frame a partir de registros salvados en formato bibliotext.
+```{r}
+library(bibliometrix)
+```
+El archivo original se denomina TodosCampos_scopus_2010_2015.bib. Para convertirlo en data.frame:  largechar_2010_2015 <- readLines('TodosCampos_scopus_2010_2015.bib') / scopus_df_2010_2015 <- scopus2df(largechar_2010_2015)
+
+Dado que es más conveniente trabajarlo en formato tibble, lo podemos convertir con: 
+library(tidyverse) / tibble_scopus_df_2010_2015 <- as_tibble(scopus_df_2010_2015)
+
+Como no podemos subir el tibble a Git-Hub, lo compartimos con Sebastián via we transfer y a partir de un csv que genera Sebastián, ambos importamos los datos nuevamente para asegurarnos trabajar sobre lo mismo: 
+
+Importación de Claudia:
+```{r}
+library(tidyverse)
+dataset1 <- read_csv(("~/Documents/INV/DATOS/Repositorios-RG/2017_12_30/datasetSebastian.csv"), guess_max = 10000)
+```
+
+Importación de Sebastian:
+#```{r}
+#library(tidyverse)
+#dataset1 <- read_csv(("C:/Users/User/Desktop/Seba/Datasets enraizados. No tocar ni mover/dataset.csv"), guess_max = 10000)
+#```
+
+Genero una stop-word en inglés-español básica:
+```{r}
+custom_stopEN <- read.csv("stop-word-list-en-sp.csv",header = FALSE, encoding="UTF-8")
+```
+
+Dado que en los 3389 registros originales hay algunos que no contienen el campo resumen, elimino esos registros y quedan 3353:
+```{r}
+AB_dataset1 <- as.data.frame(dataset1$AB)
+AB_dataset1_sinNA <- as.data.frame(na.omit(AB_dataset1)) 
+colnames(AB_dataset1_sinNA)[1] <- "AB"
+```
+
+Dado que interesa en esta primera prueba ver si se producen diferencias significativas en los clusters aplicando y no aplicando stemming, utilizamos una función específica del paquete bibliometrix, llamada termExtraction, que genera una nueva data.frame igual a la de entrada pero con una nueva variable que contiene las palabras del resumen separadas con ; (unigramas). La nueva variable se llamará AB_TM. 
+
+Entonces, se genera esta nueva variable con solo los términos del resumen, sin stemming y aplicando stopword:
+```{r}
+AB_TM_dataset1_stop_sinStem <- termExtraction(AB_dataset1_sinNA, Field = "AB", stemming = FALSE, language = "english", remove.numbers = TRUE, remove.terms = custom_stopEN$V1, verbose = TRUE)
+```
+
+Dado que la nueva variable AB_TM contiene las palabras separadas con ; hago uso de una expresión regular para 
+reemplazar el signo por espacio en blanco:
+```{r}
+AB_TM_dataset1_stop_sinStem_sinPunto <- data.frame(lapply(AB_TM_dataset1_stop_sinStem, function(x) {gsub("[;]"," ", x)}))
+```
+
+Para hacer uso de la función del paquete bibliometrix que me permite generar los clusters, llamada conceptualStructure, debo renombrar la variable AB_TM nuevamente como AB: 
+```{r}
+colnames(AB_TM_dataset1_stop_sinStem_sinPunto)[2] <- "AB"
+colnames(AB_TM_dataset1_stop_sinStem_sinPunto, do.NULL = TRUE, prefix = "col")
+```
+
+Se generan los clusters tomando entonces las palabras del resumen sin sttemming y probando con distintos valores de frecuencias minímas (minDegree). Se pasa como cantidad de clusters el valor máximo que permite la función que son 8:
+
+Frecuencia mínima 100
+```{r}
+SinStemmAB100_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=100, k.max = 8, labelsize=4)
+SinStemmAB100_8$km.res
+```
+
+Frecuencia mínima 75
+```{r}
+SinStemmAB75_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=75, k.max = 8, labelsize=4)
+SinStemmAB75_8$km.res
+```
+
+Frecuencia mínima 50
+```{r}
+SinStemmAB50_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=50, k.max = 8, labelsize=4)
+SinStemmAB50_8$km.res
+```
+
+Frecuencia mínima 30
+```{r}
+SinStemmAB30_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=30, k.max = 8, labelsize=4)
+SinStemmAB30_8$km.res
+```
+
+Frecuencia mínima 25
+```{r}
+SinStemmAB25_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=25, k.max = 8, labelsize=4)
+SinStemmAB25_8$km.res
+```
+
+Frecuencia mínima 20
+```{r}
+SinStemmAB20_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=20, k.max = 8, labelsize=4)
+SinStemmAB20_8$km.res
+```
+
+
+Frecuencia mínima 15
+```{r}
+SinStemmAB15_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=15, k.max = 8, labelsize=4)
+SinStemmAB15_8$km.res
+```
+
+
+Frecuencia mínima 10
+```{r}
+SinStemmAB10_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=10, k.max = 8, labelsize=4)
+SinStemmAB10_8$km.res
+```
+
+Frecuencia mínima 8
+```{r}
+SinStemmAB8_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=8, k.max = 8, labelsize=4)
+SinStemmAB8_8$km.res
+```
+
+
+Frecuencia mínima 5
+```{r}
+SinStemmAB5_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=5, k.max = 8, labelsize=4)
+SinStemmAB5_8$km.res
+```
+
+
+Frecuencia mínima 2
+```{r}
+SinStemmAB2_8 <- conceptualStructure(AB_TM_dataset1_stop_sinStem_sinPunto, field="AB", stemming=FALSE, minDegree=2, k.max = 8, labelsize=4)
+SinStemmAB2_8$km.res
+```
+
+
+
