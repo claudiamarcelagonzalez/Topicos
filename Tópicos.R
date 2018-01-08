@@ -1,6 +1,6 @@
 #setwd("/Users/claudiamgonzalez/Documents/INV/PPID_H019_2016/Trabajo/R/Topics/biblioGIS/Tópicos")
 #seba: ojo con esta función setwd(), si yo la ejecuto hago un lío en mis directorios, una vez que-
-#... usas la función setwd() bloqueala con un # (como hice arriba)
+#... usas la función setwd() bloqueala con un # (como hice arriba).
 
 ########################################################################################################
 # Aplicación de la técnica de agrupamiento k-means al corpus Scopus_CS_Argentina_xArgentinos_2010_2015 #
@@ -17,7 +17,7 @@ library (bibliometrix)
 # largechar_2010_2015 <- readLines('TodosCampos_scopus_2010_2015.bib')
 # scopus_df_2010_2015 <- scopus2df(largechar_2010_2015)
 
-# Convierto el data.frame en tipo tibble
+# Convierto el data.frame en tipo tibble...
 # library(tidyverse)
 # tibble_scopus_df_2010_2015 <- as_tibble(scopus_df_2010_2015) #cambió a tibble..
 

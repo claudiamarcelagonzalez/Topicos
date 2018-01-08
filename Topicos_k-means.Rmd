@@ -7,7 +7,7 @@ output:
     df_print: paged
 ---
 
-La idea es aplicar clustering a los textos de los resúmenes de un corpus de 3389 registros recuperados a partir de buscar en Scopus en el gran área de Ciencias Sociales & Humanidades, trabajos de autoria argentina (afiliación de alguno de los autores), que contengan la palabra ARGENTINA o derivados en los campos título, keywords o resumen, en el periodo 2010-2015.  
+La idea es aplicar clustering a los textos de los resúmenes de un corpus de 3389 registros recuperados a partir de buscar en Scopus en el gran área de Ciencias Sociales & Humanidades, trabajos de autoria argentina (afiliación de alguno de los autores), que contengan la palabra ARGENTINA o derivados en los campos título, keywords o resumen, en el periodo 2010-2015..  
 
 Para importar los registros de Scopus a R, utilizamos el paquete bibliometrix (https://cran.r-project.org/web/packages/bibliometrix/bibliometrix.pdf) que permite generar un data.frame a partir de registros salvados en formato bibliotext.
 ```{r}
